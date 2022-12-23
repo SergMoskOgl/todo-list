@@ -1,0 +1,106 @@
+<div class="d-flex justify-content-end">
+  <button class="btn btn-primary mb-2" (click)="addTask()">Add Task</button>
+</div>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col"></th>
+    <th scope="col">Done</th>
+    <th scope="col">Description</th>
+    <th scope="col">Label</th>
+    <th scope="col">Category</th>
+    <th scope="col">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of todoList">
+    <th scope="row">{{ item.id }}</th>
+    <td><input type="checkbox" [(ngModel)]="item.checked" (change)="changeDone(item)"></td>
+    <td>{{ item.done }}</td>
+    <td>{{ item.description }}</td>
+    <td>{{ item.label }}</td>
+    <td>{{ item.categoryName }}</td>
+    <td>
+      <div class="d-flex">
+        <button class="btn btn-sm btn-outline-primary mr-1" (click)="editTask(item)">
+          Edit
+        </button>
+        &nbsp;
+        <button class="btn btn-sm btn-outline-danger" (click)="deleteTask(item.id)">
+          Remove
+        </button>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+
+<ng-template #taskModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ isEdit ? 'Edit' : 'Add' }} task</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form #addTaskForm="ngForm">
+      <div class="mb-3">
+        <label for="description">Description</label>
+        <div class="input-group">
+          <input
+            id="description"
+            class="form-control"
+            placeholder="Enter description"
+            name="description"
+            required
+            #description="ngModel"
+            [(ngModel)]="taskDescription"
+          />
+        </div>
+        <small *ngIf="!description.valid && (description.dirty || description.touched)" class="form-text danger">
+          This field is required!
+        </small>
+      </div>
+      <div class="mb-3">
+        <label for="category">Category</label>
+        <div class="input-group">
+          <ng-select
+            id="category"
+            name="category"
+            class="w-100"
+            bindLabel="name"
+            bindValue="id"
+            placeholder="Select category"
+            [clearable]="false"
+            [items]="categories"
+            required
+            [(ngModel)]="taskCategory"
+          ></ng-select>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="label">Label</label>
+        <div class="input-group">
+          <input
+            id="label"
+            class="form-control"
+            placeholder="Enter label"
+            name="label"
+            [(ngModel)]="taskLabel"
+          />
+        </div>
+      </div>
+      <div *ngIf="isEdit" class="mb-3">
+        <label>Done</label>
+        <div class="input-group">
+          <input class="form-control" name="done" [(ngModel)]="taskDone" disabled/>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Cancel</button>
+    <button type="button" class="btn btn-primary" [disabled]="!addTaskForm.valid" (click)="taskSubmit(addTaskForm)">Save</button>
+  </div>
+</ng-template>

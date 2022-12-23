@@ -1,0 +1,75 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "label": "Kitchen Cleanup",
+      "description": "Clean my dirty kitchen",
+      "category": 1,
+      "done": "23-11-2022",
+      "checked": true,
+      "categoryName": "House"
+    },
+    {
+      "id": 2,
+      "label": "Taxes",
+      "description": "Start doing my taxes and contact my accountant jhon for advice",
+      "category": 2,
+      "done": null,
+      "checked": false,
+      "categoryName": "Bureaucracy"
+    },
+    {
+      "description": "task 1",
+      "category": 1,
+      "label": "label 1",
+      "done": "23-11-2022",
+      "id": 3,
+      "checked": true,
+      "categoryName": "House"
+    },
+    {
+      "description": "task 2",
+      "category": 2,
+      "label": "label 2",
+      "done": null,
+      "id": 4,
+      "checked": false,
+      "categoryName": "Bureaucracy"
+    },
+    {
+      "description": "task 3",
+      "category": 1,
+      "label": "label 3",
+      "done": null,
+      "id": 5
+    },
+    {
+      "description": "task 4",
+      "category": 1,
+      "label": "label 4",
+      "done": "23-11-2022",
+      "id": 6,
+      "checked": true,
+      "categoryName": "House"
+    },
+    {
+      "description": "task 5 edited",
+      "category": 2,
+      "label": "label 5",
+      "id": 7,
+      "checked": true,
+      "categoryName": "Bureaucracy",
+      "done": "23-11-2022"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "House"
+    },
+    {
+      "id": 2,
+      "name": "Bureaucracy"
+    }
+  ]
+}

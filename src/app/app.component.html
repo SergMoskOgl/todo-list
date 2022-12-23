@@ -1,0 +1,20 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-3 mb-5">
+  <span class="navbar-brand">{{ title }}</span>
+  <div class="navbar-nav">
+    <a class="nav-item nav-link" routerLink="/dash" routerLinkActive="text-danger">DASHBOARD</a>
+    <a class="nav-item nav-link" routerLink="/list" routerLinkActive="text-danger">MANAGE LIST</a>
+    <a class="nav-item nav-link" routerLink="/categories" routerLinkActive="text-danger">CATEGORIES</a>
+  </div>
+</nav>
+
+<div class="content" role="main">
+  <h2>Do it!</h2>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+
+  <!-- Footer -->
+  <footer></footer>
+</div>
