@@ -7,6 +7,7 @@ import {TodosState} from '../../store/states/todos.state';
 import {combineLatest} from "rxjs";
 import {CategoriesState} from "../../store/states/categories.state";
 import {CategoriesGetList} from "../../store/actions/categories.action";
+import {ToastService} from "../../services/toast.service";
 
 const compare = (v1: string | number, v2: string | number) => (v1 < v2 ? -1 : v1 > v2 ? 1 : 0);
 
@@ -25,7 +26,7 @@ export class DashboardComponent implements OnInit {
   todoList: any[] = [];
   categories: any[] = [];
 
-  constructor(private store: Store) { }
+  constructor(private store: Store, public toastService: ToastService) { }
 
   ngOnInit(): void {
     this.store.dispatch(new CategoriesGetList());
@@ -75,6 +76,7 @@ export class DashboardComponent implements OnInit {
     if (task.id) {
       this.store.dispatch(new TodosEditTask(task)).subscribe((res) => {
         console.log('res:', res);
+        this.toastService.show('Task status changed', { classname: 'bg-success text-light', delay: 5000 });
       });
     }
   }

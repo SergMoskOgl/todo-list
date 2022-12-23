@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, TemplateRef} from '@angular/core';
+import {ToastService} from "../../services/toast.service";
 
 @Component({
   selector: 'app-toasts',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./toasts.component.scss']
 })
 export class ToastsComponent {
+  constructor(public toastService: ToastService) {}
 
+  isTemplate(toast: { textOrTpl: any; }) {
+    return toast.textOrTpl instanceof TemplateRef;
+  }
 }

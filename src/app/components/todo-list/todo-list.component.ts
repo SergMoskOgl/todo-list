@@ -8,6 +8,7 @@ import {TodosAddTask, TodosDeleteTask, TodosEditTask, TodosGetList} from "../../
 import {CategoriesGetList} from "../../store/actions/categories.action";
 import {CategoriesState} from "../../store/states/categories.state";
 import {TodosState} from '../../store/states/todos.state';
+import {ToastService} from "../../services/toast.service";
 
 @Component({
   selector: 'app-todo-list',
@@ -28,7 +29,7 @@ export class TodoListComponent implements OnInit {
   taskDone = null;
   isEdit = false;
 
-  constructor(private store: Store, private modalService: NgbModal) { }
+  constructor(private store: Store, private modalService: NgbModal, public toastService: ToastService) { }
 
   ngOnInit(): void {
     this.store.dispatch(new CategoriesGetList());
@@ -88,6 +89,7 @@ export class TodoListComponent implements OnInit {
     if (formData.description) {
       this.store.dispatch(new TodosAddTask(formData)).subscribe((res) => {
         console.log('res:', res);
+        this.toastService.show('Task created', { classname: 'bg-success text-light', delay: 5000 });
       });
       this.taskModalRef.dismiss();
     }
@@ -114,6 +116,8 @@ export class TodoListComponent implements OnInit {
         this.taskCategory = null;
         this.taskLabel = null;
         this.taskDone = null;
+
+        this.toastService.show('Task changed', { classname: 'bg-success text-light', delay: 5000 });
       });
       this.taskModalRef.dismiss();
     }
@@ -126,6 +130,7 @@ export class TodoListComponent implements OnInit {
     if (task.id) {
       this.store.dispatch(new TodosEditTask(task)).subscribe((res) => {
         console.log('res:', res);
+        this.toastService.show('Task status changed', { classname: 'bg-success text-light', delay: 5000 });
       });
     }
   }
@@ -134,6 +139,7 @@ export class TodoListComponent implements OnInit {
     if (taskId) {
       this.store.dispatch(new TodosDeleteTask(taskId)).subscribe((res) => {
         console.log('res:', res);
+        this.toastService.show('Task deleted', { classname: 'bg-success text-light', delay: 5000 });
       });
     }
   }
