@@ -11,7 +11,6 @@
           <th scope="col" sortable="description" (sort)="onSort($event)">Description</th>
           <th scope="col" sortable="label" (sort)="onSort($event)">Label</th>
           <th scope="col" sortable="category" (sort)="onSort($event)">Category</th>
-          <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -21,8 +20,7 @@
           <td>{{ item.done }}</td>
           <td>{{ item.description }}</td>
           <td>{{ item.label }}</td>
-          <td>{{ item.category }}</td>
-          <td></td>
+          <td>{{ item.categoryName }}</td>
         </tr>
         </tbody>
       </table>

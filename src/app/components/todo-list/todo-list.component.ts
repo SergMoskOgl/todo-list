@@ -121,7 +121,7 @@ export class TodoListComponent implements OnInit {
 
   changeDone(task: any) {
     const date = new Date();
-    task.done = task.checked ? `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}` : null;
+    task.done = task.checked ? `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}` : null;
 
     if (task.id) {
       this.store.dispatch(new TodosEditTask(task)).subscribe((res) => {
